@@ -3,7 +3,7 @@
 A simple world streaming system specifically built for the usage of Project 95. Nothing too fancy here, loads chunks from their custom resource position and checks if it's within the radius of the player.
 
 
-> **Note**
+> **Note:**
 > This is built specifically for the usage of Project 95. A open-world 3D platformer/metroidvania that has a low poly art style. So, it might not be usable for any game on a higher level than that.
 
 ## Tutorial
