@@ -20,6 +20,4 @@ Next, add a WorldStreaming node. Within here, you can add your Chunks as PackedS
 
 This shit is mainly for me to remember because I get dementia sometimes.I don't know if I'll ever publicly release this, but it'd be pretty cool if I did because it's wildly convenient although I don't think I will because I feel like it's too lame feeling.
 
-<details>
-    ![i'm scared...](tutorial_images/i'm scared.jpg)
-</details>
+![i'm scared.](<tutorial_images/i'm scared.jpg>)
