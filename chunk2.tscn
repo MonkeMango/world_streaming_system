@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://uiwjscu17avn"]
+
+[ext_resource type="Script" path="res://addons/world_streaming/chunk.gd" id="1_4wj3f"]
+[ext_resource type="Resource" uid="uid://duugq1je83sd5" path="res://chunk2.tres" id="2_eutsm"]
+
+[node name="Chunk2" type="Node3D"]
+script = ExtResource("1_4wj3f")
+chunk_data = ExtResource("2_eutsm")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(10, 0.492, 10)

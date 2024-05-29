@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChunkData" load_steps=2 format=3 uid="uid://duugq1je83sd5"]
+
+[ext_resource type="Script" path="res://addons/world_streaming/chunk_data.gd" id="1_db7rq"]
+
+[resource]
+script = ExtResource("1_db7rq")
+scene_path = "res://chunk.tscn"
+position = Vector3(0, 0, 10)

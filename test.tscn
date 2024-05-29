@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl3hauwg3u05c"]
+
+[ext_resource type="PackedScene" uid="uid://jlxfyppyiygw" path="res://player/player.tscn" id="2_v8meg"]
+[ext_resource type="Script" path="res://addons/world_streaming/world_streamer.gd" id="2_yljxg"]
+[ext_resource type="PackedScene" uid="uid://dro545vegw1n1" path="res://chunk1.tscn" id="3_fsh8w"]
+[ext_resource type="PackedScene" uid="uid://uiwjscu17avn" path="res://chunk2.tscn" id="4_j7ixy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnn3u"]
+sky_top_color = Color(1, 0.70314, 0.99449, 1)
+sky_horizon_color = Color(1.54018e-06, 0.734987, 0.837207, 1)
+
+[sub_resource type="Sky" id="Sky_jlkyt"]
+sky_material = SubResource("ProceduralSkyMaterial_jnn3u")
+
+[sub_resource type="Environment" id="Environment_hlqbn"]
+background_mode = 2
+sky = SubResource("Sky_jlkyt")
+
+[node name="Test" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_v8meg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hlqbn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.509235, -0.205623, 0.835703, 0.106997, 0.978631, 0.175592, -0.853951, -1.52347e-08, 0.520354, 0.0664787, 31.9051, 0)
+light_energy = 1.476
+shadow_enabled = true
+
+[node name="WorldStreaming" type="Node3D" parent="."]
+script = ExtResource("2_yljxg")
+chunk_radius = 10.0
+chunk_scenes = Array[PackedScene]([ExtResource("3_fsh8w"), ExtResource("4_j7ixy")])

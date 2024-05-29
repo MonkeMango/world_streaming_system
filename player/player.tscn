@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://jlxfyppyiygw"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_lojr0"]
+[ext_resource type="Script" path="res://player/SpringArm3D.gd" id="2_7o77c"]
+[ext_resource type="Script" path="res://player/Camera3D.gd" id="3_4b35p"]
+[ext_resource type="Script" path="res://player/player_states/state_machine.gd" id="5_8k5ea"]
+[ext_resource type="Script" path="res://player/player_states/idle.gd" id="6_pg6lc"]
+[ext_resource type="Script" path="res://player/player_states/move.gd" id="7_4r2oj"]
+[ext_resource type="Script" path="res://player/player_states/jump.gd" id="8_dgcfy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ecmb"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.784314, 0.396078, 0.768627, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yf2lk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yu6i2"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_lojr0")
+SPEED = 9.0
+jump_height = 9.425
+jump_time_to_peak = 0.9
+jump_time_to_descent = 0.555
+
+[node name="Capsule" type="MeshInstance3D" parent="."]
+layers = 65537
+material_override = SubResource("StandardMaterial3D_4ecmb")
+mesh = SubResource("CapsuleMesh_yf2lk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_yu6i2")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
+spring_length = 3.5
+script = ExtResource("2_7o77c")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+script = ExtResource("3_4b35p")
+
+[node name="JumpBuffer" type="Timer" parent="."]
+wait_time = 0.293
+one_shot = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("5_8k5ea")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "air_state")]
+script = ExtResource("6_pg6lc")
+move_state = NodePath("../Move")
+air_state = NodePath("../Air")
+
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "air_state")]
+script = ExtResource("7_4r2oj")
+idle_state = NodePath("../Idle")
+air_state = NodePath("../Air")
+
+[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+script = ExtResource("8_dgcfy")
+idle_state = NodePath("../Idle")
+move_state = NodePath("../Move")

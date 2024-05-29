@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChunkData" load_steps=4 format=3 uid="uid://fsi6jtuevtgt"]
+
+[ext_resource type="PackedScene" uid="uid://coqbidv5ko8sq" path="res://OMG!!.tscn" id="1_3ung1"]
+[ext_resource type="Script" path="res://addons/world_streaming/chunk_data.gd" id="1_hx1ca"]
+[ext_resource type="PackedScene" uid="uid://cf40jan468etw" path="res://otherOMG.tscn" id="2_ldh0l"]
+
+[resource]
+script = ExtResource("1_hx1ca")
+assets_to_stream = Array[PackedScene]([ExtResource("1_3ung1"), ExtResource("2_ldh0l")])
+position = Vector3(0, 0, 0)
